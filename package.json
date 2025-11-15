@@ -12,6 +12,19 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.2",
+    "axios": "^1.6.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "date-fns": "^2.30.0",
+    "iron-session": "^8.0.4",
+    "next": "16.0.3",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-hook-form": "^7.50.0",
+    "recharts": "^2.10.0",
+    "tailwind-merge": "^2.2.0",
+    "zod": "^3.22.0"
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0",
@@ -32,6 +45,11 @@
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
     "eslint-config-prettier": "^9.1.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
     "prettier": "^3.1.0",
     "tailwindcss": "^4",
     "typescript": "^5",

@@ -6,6 +6,39 @@ A modern web application for analyzing and visualizing trending YouTube content 
 
 This full-stack application provides analytics and visualization tools for YouTube hot content, built with a modern tech stack using Next.js 14, TypeScript, Tailwind CSS, and various data visualization and form handling libraries.
 
+## 🔐 Authentication System
+
+This application implements a secure API key authentication system for YouTube Data API access:
+
+- **Secure Session Management**: Uses `iron-session` with encrypted, HttpOnly cookies
+- **API Key Validation**: Real-time validation against YouTube Data API v3
+- **No Database Storage**: API keys are stored only in secure sessions
+- **Comprehensive Error Handling**: User-friendly error messages and validation
+- **Security First**: No API key exposure in client responses or server logs
+
+### Getting Started with Authentication
+
+1. **Get Your API Key**: 
+   - Visit [Google Cloud Console](https://console.developers.google.com/)
+   - Create a new project or select existing one
+   - Enable YouTube Data API v3
+   - Create credentials (API Key)
+
+2. **Environment Setup**:
+   ```bash
+   cp .env.local.example .env.local
+   # Edit .env.local and add your SESSION_PASSWORD
+   ```
+
+3. **Start the Application**:
+   ```bash
+   npm run dev
+   ```
+
+4. **Authenticate**: Visit `http://localhost:3000` and enter your API key
+
+For detailed authentication documentation, see [docs/API_KEY_AUTHENTICATION.md](./docs/API_KEY_AUTHENTICATION.md).
+
 ## Tech Stack
 
 ### Frontend & Framework
