@@ -19,6 +19,12 @@ export async function POST(req: NextRequest) {
 
     if (!validation.valid) {
       return NextResponse.json({ error: validation.error || 'Invalid API key' }, { status: 400 });
+    
+    if (!validation.valid) {
+      return NextResponse.json(
+        { error: validation.error || 'Invalid API key' },
+        { status: 400 }
+      );
     }
 
     // Store the API key in the session
@@ -41,5 +47,25 @@ export async function POST(req: NextRequest) {
 
     console.error('Error in verify-key route:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+    return NextResponse.json({ 
+      success: true, 
+      message: 'API key validated and stored successfully' 
+    });
+
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      return NextResponse.json(
+        { error: error.errors[0].message },
+        { status: 400 }
+      );
+    }
+
+    console.error('Error in verify-key route:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
   }
 }

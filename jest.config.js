@@ -1,3 +1,7 @@
+module.exports = {
+  testEnvironment: 'node',
+  roots: ['<rootDir>/tests'],
+  moduleFileExtensions: ['js', 'json'],
 export default {
   preset: 'ts-jest/presets/default-esm',
   testEnvironment: 'node',
