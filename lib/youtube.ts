@@ -1,5 +1,18 @@
 import axios from 'axios';
 
+export async function validateYouTubeApiKey(
+  apiKey: string
+): Promise<{ valid: boolean; error?: string }> {
+  try {
+    // Use a lightweight endpoint to validate the API key
+    const response = await axios.get('https://www.googleapis.com/youtube/v3/channels', {
+      params: {
+        part: 'snippet',
+        id: 'UCBR8-60-B28hp2BmDPdntcQ', // YouTube's official channel ID
+        key: apiKey,
+      },
+      timeout: 10000, // 10 second timeout
+    });
 export async function validateYouTubeApiKey(apiKey: string): Promise<{ valid: boolean; error?: string }> {
   try {
     // Use a lightweight endpoint to validate the API key
@@ -23,6 +36,16 @@ export async function validateYouTubeApiKey(apiKey: string): Promise<{ valid: bo
     return { valid: false, error: 'Invalid API key: Unable to fetch channel data' };
   } catch (err: unknown) {
     // Log error without exposing the API key
+    const error = err as {
+      response?: { status?: number; data?: { error?: { message?: string } } };
+      code?: string;
+      message?: string;
+    };
+    console.error(
+      'YouTube API validation error:',
+      error.response?.data?.error?.message || error.message
+    );
+
     const error = err as { response?: { status?: number; data?: { error?: { message?: string } } }; code?: string; message?: string };
     console.error('YouTube API validation error:', error.response?.data?.error?.message || error.message);
     
@@ -36,4 +59,5 @@ export async function validateYouTubeApiKey(apiKey: string): Promise<{ valid: bo
       return { valid: false, error: 'Failed to validate API key. Please try again.' };
     }
   }
+}
 }

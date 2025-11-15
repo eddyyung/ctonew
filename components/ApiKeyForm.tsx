@@ -6,6 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 
 const apiKeySchema = z.object({
+  apiKey: z
+    .string()
   apiKey: z.string()
     .min(1, 'API key is required')
     .min(10, 'API key appears to be too short')
@@ -21,6 +23,7 @@ interface ApiKeyFormProps {
 
 export default function ApiKeyForm({ onSuccess, onError }: ApiKeyFormProps) {
   const [isLoading, setIsLoading] = useState(false);
+
   
   const {
     register,
@@ -61,6 +64,10 @@ export default function ApiKeyForm({ onSuccess, onError }: ApiKeyFormProps) {
     <div className="w-full max-w-md">
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
+          <label
+            htmlFor="apiKey"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+          >
           <label htmlFor="apiKey" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
             YouTube Data API Key
           </label>
@@ -73,6 +80,7 @@ export default function ApiKeyForm({ onSuccess, onError }: ApiKeyFormProps) {
             disabled={isLoading}
           />
           {errors.apiKey && (
+            <p className="mt-1 text-sm text-red-600 dark:text-red-400">{errors.apiKey.message}</p>
             <p className="mt-1 text-sm text-red-600 dark:text-red-400">
               {errors.apiKey.message}
             </p>
@@ -96,6 +104,25 @@ export default function ApiKeyForm({ onSuccess, onError }: ApiKeyFormProps) {
           </button>
         </div>
       </form>
+
+      <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
+        <p className="mb-1">Your API key will be stored securely in your browser session.</p>
+        <p>
+          Get your API key from the{' '}
+          <a
+            href="https://console.developers.google.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 hover:underline"
+          >
+            Google Cloud Console
+          </a>
+          .
+        </p>
+      </div>
+    </div>
+  );
+}
       
       <div className="mt-4 text-xs text-gray-500 dark:text-gray-400">
         <p className="mb-1">Your API key will be stored securely in your browser session.</p>

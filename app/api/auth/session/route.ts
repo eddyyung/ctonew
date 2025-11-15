@@ -10,6 +10,9 @@ export async function GET() {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     if (!(session as any).isAuthenticated) {
+      return NextResponse.json({
+        isAuthenticated: false,
+        message: 'No active session found',
       return NextResponse.json({ 
         isAuthenticated: false,
         message: 'No active session found' 
@@ -19,6 +22,13 @@ export async function GET() {
     // Return session info without exposing the API key
     return NextResponse.json({
       isAuthenticated: true,
+      message: 'Active session found',
+    });
+  } catch (error) {
+    console.error('Error in session route:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
       message: 'Active session found'
     });
 

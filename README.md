@@ -33,6 +33,7 @@ This application implements a secure API key authentication system for YouTube D
 
 ### Getting Started with Authentication
 
+1. **Get Your API Key**:
 1. **Get Your API Key**: 
    - Visit [Google Cloud Console](https://console.developers.google.com/)
    - Create a new project or select existing one
@@ -40,12 +41,14 @@ This application implements a secure API key authentication system for YouTube D
    - Create credentials (API Key)
 
 2. **Environment Setup**:
+
    ```bash
    cp .env.local.example .env.local
    # Edit .env.local and add your SESSION_PASSWORD
    ```
 
 3. **Start the Application**:
+
    ```bash
    npm run dev
    ```
@@ -369,6 +372,66 @@ Variables prefixed with `NEXT_PUBLIC_` are available in the browser. Other varia
 - ✅ ESLint and Prettier for code quality
 - ✅ Husky pre-commit hooks
 - ✅ Form validation with react-hook-form and Zod
+- ✅ Data visualization with Recharts
+- ✅ API integration with Axios
+- ✅ Date utilities with date-fns
+- ✅ Trending Analytics Dashboard
+- ✅ Interactive bubble chart visualization
+- ✅ Top-10 trending videos list
+- ✅ Title obfuscation with click-to-reveal
+
+## 📊 Trending Analytics Dashboard
+
+The application features a comprehensive dashboard for analyzing trending YouTube content:
+
+### Key Features
+
+- **Date Range Selection**: Choose custom date ranges (1-31 days) to analyze trending content
+- **Bubble Chart Visualization**: Interactive scatter plot showing:
+  - X-axis: View count
+  - Y-axis: Like count
+  - Bubble size: Comment count
+  - Color-coded for easy identification
+  - Hover tooltips with detailed metrics
+- **Top 10 Videos List**: Comprehensive table displaying:
+  - Ranking by views and likes
+  - Video title with obfuscation toggle
+  - Channel information
+  - Publish date
+  - Engagement metrics (views, likes)
+  - Direct YouTube link
+- **Responsive Design**: Fully optimized for desktop and mobile devices
+- **Accessible UI**: ARIA labels, keyboard navigation, and screen reader support
+- **Error Handling**: Friendly error messages and loading states
+
+### Usage
+
+1. **Authenticate**: Enter your YouTube Data API key on the home page
+2. **Select Date Range**: Use the date pickers to choose your analysis period
+3. **Fetch Data**: Click "Fetch Trending Data" or use the "Last 7 Days" quick action
+4. **Explore**:
+   - Hover over bubbles in the chart for detailed metrics
+   - Click video titles to toggle between obfuscated and original text
+   - Click YouTube icons to watch videos
+5. **Adjust**: Select different date ranges to see how trends change over time
+
+### API Endpoint
+
+The dashboard consumes the `/api/analytics/trending` endpoint:
+
+```typescript
+POST /api/analytics/trending
+{
+  "startDate": "2024-10-01T00:00:00Z",
+  "endDate": "2024-10-31T23:59:59Z"
+}
+```
+
+Response includes:
+
+- Date range confirmation
+- Bubble chart data with visualization axes
+- Top 10 videos with metrics and obfuscated titles
 - ✅ Data visualization ready with Recharts
 - ✅ API integration with Axios
 - ✅ Date utilities with date-fns

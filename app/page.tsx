@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import ApiKeyForm from '@/components/ApiKeyForm';
 import AuthStatus from '@/components/AuthStatus';
 import Toast from '@/components/Toast';
+import TrendingDashboard from '@/components/TrendingDashboard';
 
 interface ToastMessage {
   message: string;
@@ -51,6 +52,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      {toast && <Toast message={toast.message} type={toast.type} onClose={closeToast} />}
+
       {toast && (
         <Toast
           message={toast.message}
@@ -80,6 +83,7 @@ export default function Home() {
               {isAuthenticated ? (
                 <div className="space-y-6">
                   <AuthStatus onLogout={handleLogout} />
+                  <TrendingDashboard />
                   
                   <div className="bg-white rounded-lg shadow-lg p-6 dark:bg-gray-800">
                     <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
@@ -96,6 +100,7 @@ export default function Home() {
                     <h2 className="mb-6 text-2xl font-semibold text-gray-900 dark:text-white text-center">
                       Authenticate Your API Key
                     </h2>
+
                     
                     <div className="mb-6">
                       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 dark:bg-blue-900/20 dark:border-blue-800">
@@ -110,6 +115,7 @@ export default function Home() {
                       </div>
                     </div>
 
+                    <ApiKeyForm onSuccess={handleApiKeySuccess} onError={handleApiKeyError} />
                     <ApiKeyForm
                       onSuccess={handleApiKeySuccess}
                       onError={handleApiKeyError}
