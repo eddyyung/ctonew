@@ -5,6 +5,7 @@ import ApiKeyForm from '@/components/ApiKeyForm';
 import AuthStatus from '@/components/AuthStatus';
 import Toast from '@/components/Toast';
 import TrendingDashboard from '@/components/TrendingDashboard';
+import KeywordSearch from '@/components/KeywordSearch';
 
 interface ToastMessage {
   message: string;
@@ -76,6 +77,7 @@ export default function Home() {
                 <div className="space-y-6">
                   <AuthStatus onLogout={handleLogout} />
                   <TrendingDashboard />
+                  <KeywordSearch />
                 </div>
               ) : (
                 <div className="space-y-6">
