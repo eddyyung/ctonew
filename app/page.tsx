@@ -54,6 +54,14 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
       {toast && <Toast message={toast.message} type={toast.type} onClose={closeToast} />}
 
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={closeToast}
+        />
+      )}
+      
       <div className="flex min-h-screen flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
         <div className="w-full max-w-2xl">
           <div className="text-center mb-8">
@@ -76,6 +84,15 @@ export default function Home() {
                 <div className="space-y-6">
                   <AuthStatus onLogout={handleLogout} />
                   <TrendingDashboard />
+                  
+                  <div className="bg-white rounded-lg shadow-lg p-6 dark:bg-gray-800">
+                    <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
+                      Dashboard
+                    </h2>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Your API key is authenticated and ready to use. The analytics dashboard will be available here once implemented.
+                    </p>
+                  </div>
                 </div>
               ) : (
                 <div className="space-y-6">
@@ -84,6 +101,7 @@ export default function Home() {
                       Authenticate Your API Key
                     </h2>
 
+                    
                     <div className="mb-6">
                       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 dark:bg-blue-900/20 dark:border-blue-800">
                         <h3 className="text-sm font-medium text-blue-800 dark:text-blue-200 mb-2">
@@ -98,6 +116,10 @@ export default function Home() {
                     </div>
 
                     <ApiKeyForm onSuccess={handleApiKeySuccess} onError={handleApiKeyError} />
+                    <ApiKeyForm
+                      onSuccess={handleApiKeySuccess}
+                      onError={handleApiKeyError}
+                    />
                   </div>
 
                   <div className="bg-white rounded-lg shadow-lg p-6 dark:bg-gray-800">
@@ -115,6 +137,29 @@ export default function Home() {
               )}
             </div>
           )}
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+      <div className="flex min-h-screen flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+        <div className="text-center">
+          <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-5xl">
+            YouTube Hot Content Analytics
+          </h1>
+          <p className="mb-8 text-lg text-gray-600 dark:text-gray-300">
+            Welcome to the web application for analyzing trending YouTube content
+          </p>
+          <div className="inline-block rounded-lg bg-white p-8 shadow-lg dark:bg-gray-800">
+            <h2 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+              Getting Started
+            </h2>
+            <ul className="space-y-2 text-left text-gray-700 dark:text-gray-300">
+              <li>✓ Next.js 14 with TypeScript</li>
+              <li>✓ Tailwind CSS for styling</li>
+              <li>✓ ESLint and Prettier for code quality</li>
+              <li>✓ Ready for data visualization with Recharts</li>
+              <li>✓ Form validation with react-hook-form and Zod</li>
+            </ul>
+          </div>
         </div>
       </div>
     </main>

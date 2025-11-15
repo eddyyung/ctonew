@@ -8,6 +8,7 @@ export async function POST() {
     const cookieStore = await cookies();
     const session = await getIronSession(cookieStore, sessionOptions);
 
+    
     // Destroy the session by clearing the data
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (session as any).youtubeApiKey = undefined;
@@ -22,5 +23,18 @@ export async function POST() {
   } catch (error) {
     console.error('Error in logout route:', error);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+    return NextResponse.json({ 
+      success: true,
+      message: 'Session cleared successfully' 
+    });
+
+  } catch (error) {
+    console.error('Error in logout route:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 }
+    );
   }
 }
