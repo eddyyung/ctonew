@@ -1,4 +1,15 @@
 {
+  "name": "analytics-api",
+  "version": "1.0.0",
+  "description": "Analytics API server providing trending and search endpoints.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "keywords": [
+    "analytics",
+    "api",
+    "youtube"
   "name": "youtube-data-service",
   "version": "1.0.0",
   "description": "YouTube Data API service module with caching and rate limiting",
@@ -18,6 +29,8 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.19.2",
+    "zod": "^3.22.4"
     "googleapis": "^128.0.0",
     "lru-cache": "^10.0.0",
     "p-limit": "^5.0.0"
